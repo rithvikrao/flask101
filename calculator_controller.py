@@ -5,7 +5,7 @@
 import service.calculator as calculator
 from http import HTTPStatus
 
-from flask import jsonify
+from flask import Flask, request, jsonify
 
 
 ###########################
@@ -75,7 +75,6 @@ def status():
 	return result, HTTPStatus.OK
 
 
-if __name__ == '__main__':
 	###########################
 	# 5. Start your flask app
 	# HINT: sample/explicit_application_object.py
