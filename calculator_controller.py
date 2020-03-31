@@ -12,7 +12,7 @@ from flask import jsonify
 # 2. initialize your Flask application object
 # HINT: sample/explicit_application_object.py
 ###########################
-app = 
+app = Flask(__name__)
 
 
 
@@ -26,8 +26,9 @@ app =
 
 # path = '/mean', method = 'GET'
 # request type = JSON
+@app.route('/mean', methods=['GET'])
 def mean():
-	# user_input = 
+	user_input = request.get_json()['input']
 	
 	results = calculator.mean(user_input)
 
@@ -35,9 +36,10 @@ def mean():
 
 
 # path = '/median', method = 'GET and POST'
-# request type = Query
+# request type = Query, 'POST'
+@app.route('/median', methods=['GET', 'POST'])
 def median():
-	# user_input = 
+	user_input = request.args.get('input')
 
 	user_input = list(map(int, user_input.split(',')))
 	results = calculator.median(user_input)
@@ -46,8 +48,9 @@ def median():
 
 # path = '/mode', method = 'POST'
 # request type = Form
+@app.route('/mode',methods=['POST'])
 def mode():
-	# user_input = 
+	user_input = request.form.get('input')
 
 	user_input = list(map(int, user_input))
 	results = calculator.mode(user_input)
@@ -55,7 +58,18 @@ def mode():
 	return jsonify({'output':results}), HTTPStatus.OK
 
 
+# path = '/mean', method = 'GET'
+# request type = JSON
+@app.route('/harmonic_mean', methods=['GET'])
+def harmonic_mean():
+	user_input = request.get_json()['input']
+	
+	results = calculator.harmonic_mean(user_input)
+
+	return jsonify({'output':results}), HTTPStatus.OK
+
 # path = '/status', method = 'GET'
+@app.route('/status')
 def status():
 	result = "Application is running"
 	return result, HTTPStatus.OK

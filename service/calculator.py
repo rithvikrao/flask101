@@ -31,3 +31,8 @@ def mode(number_list):
 		mode_value = max(set(number_list), key=number_list.count)
 
 	return mode_value
+
+def harmonic_mean(number_list):
+	reciprocals = [1/number for number in number_list]
+
+	return 1/(sum(reciprocals) / len(reciprocals))
