@@ -80,3 +80,8 @@ if __name__ == '__main__':
 	# 5. Start your flask app
 	# HINT: sample/explicit_application_object.py
 	###########################
+if __name__ == '__main__':
+	###########################
+	# 3. Start your flask app
+	###########################
+	app.run(host='0.0.0.0',port=8080)
